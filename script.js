@@ -143,7 +143,7 @@ const EN = {
   "ct.email": "Email",
   "ct.phone": "Phone",
   "ct.addr": "Address",
-  "ct.addrv": "Belgrade, Serbia",
+  "ct.addrv": "Serbia",
 
   "f.name": "Full name",
   "f.company": "Company",
@@ -160,7 +160,7 @@ const EN = {
   "f.sent": "Thank you! Your enquiry has been sent. We'll get back to you within one business day.",
   "f.fail": "Something went wrong. Please try again or email us at rastko@rnsreachforge.com.",
 
-  "ft.tag": "B2B lead generation, sales development and email marketing from Belgrade.",
+  "ft.tag": "B2B lead generation, sales development and email marketing from Serbia.",
   "ft.services": "Services",
   "ft.sdr": "Sales development",
   "ft.company": "Agency",
