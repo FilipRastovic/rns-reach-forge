@@ -336,7 +336,7 @@ td.us { color: var(--ink); font-weight: 600; }
 .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .member { margin: 0; }
 .member img {
-  display: block; width: 100%; aspect-ratio: 1; object-fit: cover;
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 22%;
   border-radius: var(--radius); background: var(--tint);
 }
 .member figcaption { padding-top: 18px; border-top: 0; }
