@@ -155,7 +155,7 @@ const EN = {
 
   "f.name": "Full name",
   "f.company": "Company",
-  "f.email": "Business email",
+  "f.email": "Email address",
   "f.phone": "Phone",
   "f.service": "What are you interested in?",
   "f.o1": "Lead generation",
@@ -163,7 +163,7 @@ const EN = {
   "f.msg": "Briefly about your company and customers",
   "f.submit": "Send enquiry",
   "f.note": "We reply within one business day.",
-  "f.error": "Please fill in your name, company and a valid email.",
+  "f.error": "Please enter a valid email address.",
   "f.sending": "Sending...",
   "f.sent": "Thank you! Your enquiry has been sent. We'll get back to you within one business day.",
   "f.fail": "Something went wrong. Please try again or email us at rastko@rnsreachforge.com.",
@@ -177,7 +177,7 @@ const EN = {
 };
 
 const SR_EXTRA = {
-  "f.error": "Molimo unesite ime, firmu i ispravan email.",
+  "f.error": "Molimo unesite ispravnu email adresu.",
   "f.sending": "Šaljemo...",
   "f.sent": "Hvala! Vaš upit je poslat. Javićemo vam se u roku od jednog radnog dana.",
   "f.fail": "Došlo je do greške. Pokušajte ponovo ili nam pišite na rastko@rnsreachforge.com."
@@ -242,7 +242,7 @@ const submitBtn = form.querySelector('button[type="submit"]');
 form.addEventListener("submit", async e => {
   e.preventDefault();
   const fd = new FormData(form);
-  const required = ["name", "company", "email"];
+  const required = ["email"];
   let ok = true;
   required.forEach(n => {
     const input = form.elements[n];
@@ -272,7 +272,7 @@ form.addEventListener("submit", async e => {
         "Poruka": fd.get("message"),
         "Jezik sajta": currentLang.toUpperCase(),
         _replyto: fd.get("email"),
-        _subject: `Novi upit sa sajta: ${fd.get("company")}`,
+        _subject: `Novi upit sa sajta: ${fd.get("company") || fd.get("name") || fd.get("email")}`,
         _template: "table"
       })
     });
