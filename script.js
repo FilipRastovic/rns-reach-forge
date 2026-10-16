@@ -108,8 +108,6 @@ const EN = {
   "i3.p": "Development outsourcing, SaaS products and IT support for clients at home and abroad.",
   "i4.t": "Logistics & transport",
   "i4.p": "Freight forwarding, warehousing and distribution for manufacturers and retail chains.",
-  "i5.t": "Professional services",
-  "i5.p": "Consulting, accounting, legal and engineering services for small and mid-sized businesses.",
   "i6.t": "Construction & engineering",
   "i6.p": "Contractors, designers and material suppliers targeting developers and general contractors.",
   "i7.t": "Wholesale & distribution",
