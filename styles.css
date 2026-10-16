@@ -90,9 +90,9 @@ p { margin: 0; }
 .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
 .eyebrow {
   font: 500 13px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em;
-  color: var(--ink); background: var(--lime); display: inline-block;
-  padding: 7px 12px; border-radius: 999px; margin-bottom: 22px; font-weight: 500;
+  color: var(--ink); display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; font-weight: 500;
 }
+.eyebrow span { background: var(--lime); padding: 7px 12px; border-radius: 999px; }
 .hero h1 { font-size: clamp(40px, 5.6vw, 68px); font-weight: 800; letter-spacing: -0.035em; }
 .hero h1 em {
   font-style: normal; background: var(--lime); padding: 0 .12em; border-radius: 8px;
