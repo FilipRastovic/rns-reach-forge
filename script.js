@@ -137,9 +137,9 @@ const EN = {
   "team.label": "Team",
   "team.title": "The people behind your meetings",
   "team.sub": "A small, dedicated team that personally runs every campaign, from strategy to booked meeting.",
-  "team.r1": "Sales Specialist",
-  "team.r2": "Email Marketing & Deliverability Specialist",
-  "team.r3": "GTM Strategist",
+  "team.r1": "Co-founder · Sales Specialist",
+  "team.r2": "Co-founder · Email Marketing & Deliverability Specialist",
+  "team.r3": "Co-founder · GTM Strategist",
 
   "q.title": "An engagement built around your market",
   "q.text": "Scope, channels and pricing depend on your goals. Send us a short enquiry and we'll put together a proposal for your company.",
