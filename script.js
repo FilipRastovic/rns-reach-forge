@@ -7,8 +7,6 @@ const EN = {
   "nav.benefits": "Benefits",
   "nav.industries": "Industries",
   "nav.process": "Process",
-  "nav.packages": "Packages",
-  "nav.faq": "FAQ",
   "nav.cta": "Book a call",
 
   "hero.eyebrow": "B2B lead generation · Sales development · Email marketing",
@@ -133,52 +131,11 @@ const EN = {
   "p5.t": "Reporting and optimisation",
   "p5.p": "Every week we send a report, test new messaging and segments, and double down on what works.",
 
-  "pk.label": "Packages",
-  "pk.title": "Choose the scope of our engagement",
-  "pk.sub": "Pricing depends on the market, number of segments and channels. After the first call you'll receive a detailed proposal.",
-  "k.cta": "Request a proposal",
-  "k1.t": "Pilot",
-  "k1.d": "For companies that want to test outbound before a bigger investment.",
-  "k1.term": "Duration: 1 month",
-  "k1.l1": "One customer segment",
-  "k1.l2": "Up to 500 verified contacts",
-  "k1.l3": "Email campaign with 3–4 messages",
-  "k1.l4": "Final report and recommendations",
-  "k2.badge": "Most popular",
-  "k2.t": "Growth",
-  "k2.d": "A steady flow of qualified meetings for your sales team.",
-  "k2.term": "Minimum: 3 months",
-  "k2.l1": "Up to 3 customer segments",
-  "k2.l2": "Email and LinkedIn outreach",
-  "k2.l3": "Lead qualification and meeting booking",
-  "k2.l4": "Weekly reports and dashboard",
-  "k2.l5": "Dedicated account manager",
-  "k3.t": "Full outbound",
-  "k3.d": "Your external sales development department, across multiple markets.",
-  "k3.term": "Minimum: 6 months",
-  "k3.l1": "Unlimited customer segments",
-  "k3.l2": "Higher-volume email and LinkedIn outreach",
-  "k3.l3": "Serbian and English outreach across markets",
-  "k3.l4": "Nurture campaigns for existing contacts",
-  "k3.l5": "Integration with your CRM",
 
-  "faq.label": "FAQ",
-  "faq.title": "Frequently asked questions",
-  "faq.sub": "Don't see your question? Write to us and we'll reply within one business day.",
-  "q1.q": "Is sending cold B2B emails legal?",
-  "q1.a": "Yes, when it's done right. We contact business addresses on the basis of legitimate interest, messages are relevant to the recipient's role, every email has a clear opt-out, and we keep processing records in line with GDPR and Serbian law.",
-  "q2.q": "How quickly can I expect results?",
-  "q2.a": "The first two weeks go into preparing infrastructure, data and messaging. First replies and meetings usually arrive in week three or four, and campaigns stabilise after two to three months of optimisation.",
-  "q3.q": "How many meetings per month can I get?",
-  "q3.a": "It depends on your market, segment size and offer value. We set realistic targets together after the analysis, and a pilot gives you concrete numbers for your industry.",
-  "q4.q": "Do you send emails from our domain?",
-  "q4.a": "Not from your main one. We register and configure separate domains similar to yours, so your regular business email stays fully protected.",
-  "q5.q": "Who runs the meetings with prospects?",
-  "q5.a": "Your team. We book the meeting and send a brief on the company, the person and their interest, so your salesperson walks in prepared.",
-  "q6.q": "Do you work with companies and markets outside Serbia?",
-  "q6.a": "Yes. We run campaigns in Serbian and English for the Western Balkans and the European Union.",
-  "q7.q": "What if the campaign doesn't deliver?",
-  "q7.a": "That's why we start with a pilot and track results every week. If a segment doesn't respond, we change the message, the offer or the audience, and you can always see what we're doing and why.",
+
+  "q.title": "An engagement built around your market",
+  "q.text": "Scope, channels and pricing depend on your goals. Send us a short enquiry and we'll put together a proposal for your company.",
+  "q.cta": "Request a quote",
 
   "ct.label": "Contact",
   "ct.title": "Let's talk about your next quarter",
@@ -202,7 +159,9 @@ const EN = {
   "f.submit": "Send enquiry",
   "f.note": "We reply within one business day.",
   "f.error": "Please fill in your name, company and a valid email.",
-  "f.sent": "Your email app should open with the message ready to send.",
+  "f.sending": "Sending...",
+  "f.sent": "Thank you! Your enquiry has been sent. We'll get back to you within one business day.",
+  "f.fail": "Something went wrong. Please try again or email us at rastko@rnsreachforge.com.",
 
   "ft.tag": "B2B lead generation, sales development and email marketing from Belgrade.",
   "ft.services": "Services",
@@ -214,7 +173,9 @@ const EN = {
 
 const SR_EXTRA = {
   "f.error": "Molimo unesite ime, firmu i ispravan email.",
-  "f.sent": "Vaš email program bi trebalo da se otvori sa spremnom porukom."
+  "f.sending": "Šaljemo...",
+  "f.sent": "Hvala! Vaš upit je poslat. Javićemo vam se u roku od jednog radnog dana.",
+  "f.fail": "Došlo je do greške. Pokušajte ponovo ili nam pišite na rastko@rnsreachforge.com."
 };
 
 const CONTACT_EMAIL = "rastko@rnsreachforge.com";
@@ -269,10 +230,11 @@ nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   toggle.setAttribute("aria-expanded", "false");
 }));
 
-// Contact form: GitHub Pages has no backend, so compose an email instead.
+// Contact form: GitHub Pages has no backend, so enquiries go through FormSubmit.
 const form = document.getElementById("contact-form");
 const note = document.getElementById("form-note");
-form.addEventListener("submit", e => {
+const submitBtn = form.querySelector('button[type="submit"]');
+form.addEventListener("submit", async e => {
   e.preventDefault();
   const fd = new FormData(form);
   const required = ["name", "company", "email"];
@@ -283,24 +245,42 @@ form.addEventListener("submit", e => {
     input.classList.toggle("invalid", bad);
     if (bad) ok = false;
   });
+  note.classList.remove("ok");
   if (!ok) {
     note.textContent = t("f.error");
-    note.classList.remove("ok");
     return;
   }
-  const subject = `${t("f.submit")}: ${fd.get("company")}`;
-  const body = [
-    `${t("f.name")}: ${fd.get("name")}`,
-    `${t("f.company")}: ${fd.get("company")}`,
-    `${t("f.email")}: ${fd.get("email")}`,
-    `${t("f.phone")}: ${fd.get("phone")}`,
-    `${t("f.service")}: ${fd.get("service")}`,
-    "",
-    fd.get("message")
-  ].join("\n");
-  location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  note.textContent = t("f.sent");
-  note.classList.add("ok");
+  if (fd.get("_honey")) return;
+
+  submitBtn.disabled = true;
+  note.textContent = t("f.sending");
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        "Ime i prezime": fd.get("name"),
+        "Firma": fd.get("company"),
+        "Email": fd.get("email"),
+        "Telefon": fd.get("phone"),
+        "Usluga": fd.get("service"),
+        "Poruka": fd.get("message"),
+        "Jezik sajta": currentLang.toUpperCase(),
+        _replyto: fd.get("email"),
+        _subject: `Novi upit sa sajta: ${fd.get("company")}`,
+        _template: "table"
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
+    form.reset();
+    note.textContent = t("f.sent");
+    note.classList.add("ok");
+  } catch (err) {
+    note.textContent = t("f.fail");
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
