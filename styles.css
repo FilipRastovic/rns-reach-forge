@@ -348,3 +348,69 @@ td.us { color: var(--ink); font-weight: 600; }
 }
 @media (max-width: 960px) { .team { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .team { grid-template-columns: 1fr; max-width: 420px; } }
+
+/* Hero visual: list -> reply -> calendar */
+.viz-card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px; box-shadow: 0 1px 0 rgba(16,33,69,.04), 0 12px 32px -18px rgba(16,33,69,.28);
+}
+.viz-title { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+.viz-sub { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.viz-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.viz-list li { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-top: 1px solid var(--line); }
+.viz-list li:first-child { border-top: 0; }
+.viz-ico {
+  flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--tint);
+  display: grid; place-items: center; font: 600 11px var(--mono); color: var(--ink);
+}
+.viz-who { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.viz-who b { font-size: 13px; font-weight: 600; }
+.viz-who small { font-size: 12px; color: var(--muted); }
+.viz-ok {
+  margin-left: auto; flex: none; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--lime); display: grid; place-items: center;
+}
+.viz-ok svg { width: 14px; height: 14px; fill: none; stroke: var(--green); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.mail-msg { position: relative; }
+.typing { display: none; position: absolute; left: 0; top: 18px; gap: 5px; padding: 10px 12px; background: var(--tint); border-radius: 12px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: typing 1s infinite ease-in-out; }
+.typing i:nth-child(2) { animation-delay: .15s; }
+.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes typing { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+
+.cal { display: grid; grid-template-columns: 20px repeat(5, 1fr); gap: 4px; align-items: center; }
+.cal-d { font: 500 10.5px var(--mono); text-transform: uppercase; color: var(--muted); text-align: center; }
+.cal-t { font: 500 10.5px var(--mono); color: var(--muted); }
+.cal-c { height: 28px; border-radius: 6px; background: var(--paper); border: 1px dashed var(--line); position: relative; }
+.cal-c.busy { background: var(--tint); border: 0; }
+.cal-meet {
+  position: absolute; inset: -1px; border-radius: 6px; background: var(--lime); border: 1.5px solid var(--lime-strong);
+  font: 600 10.5px var(--mono); color: var(--ink); display: grid; place-items: center; overflow: hidden; white-space: nowrap;
+}
+
+.viz-link { display: none; }
+.viz-link path { fill: none; stroke: var(--lime-strong); stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+@media (min-width: 961px) {
+  .hero-visual { display: flex; flex-direction: column; }
+  .viz-list { align-self: flex-start; width: 64%; position: relative; z-index: 1; }
+  .hero-visual .mail-card { align-self: flex-end; width: 82%; margin: -10px 0 0; position: relative; z-index: 2; }
+  .viz-cal { align-self: flex-start; width: 66%; margin-top: -10px; position: relative; z-index: 3; }
+  .viz-link { display: block; position: absolute; width: 60px; overflow: visible; pointer-events: none; }
+  .viz-link-1 { left: 100%; top: 40px; height: calc(100% - 28px); }
+  .viz-link-2 { right: 100%; top: 50%; height: calc(50% + 12px); }
+}
+@media (max-width: 960px) {
+  .viz-list, .viz-cal { display: none; }
+}
+
+/* Animation states (JS adds .animate; without it everything shows in its final state) */
+.animate [data-at] { transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1.2); }
+.animate .viz-ok:not(.on) { opacity: 0; transform: scale(.4); }
+.animate .mail-body:not(.on) { opacity: 0; }
+.animate .mail-body:not(.on) + .typing { display: flex; }
+.animate .mail-tag:not(.on) { opacity: 0; transform: translateY(6px) scale(.9); }
+.animate .cal-meet:not(.on) { opacity: 0; transform: translateY(-14px) scale(.9); }
+.animate .viz-link { transition: clip-path .8s ease; }
+.animate .viz-link:not(.on) { clip-path: inset(0 0 100% 0); }
