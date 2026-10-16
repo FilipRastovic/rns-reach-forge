@@ -7,6 +7,7 @@ const EN = {
   "nav.benefits": "Benefits",
   "nav.industries": "Industries",
   "nav.process": "Process",
+  "nav.team": "Team",
   "nav.cta": "Book a call",
 
   "hero.eyebrow": "B2B lead generation · Sales development · Email marketing",
@@ -132,6 +133,13 @@ const EN = {
   "p5.p": "Every week we send a report, test new messaging and segments, and double down on what works.",
 
 
+
+  "team.label": "Team",
+  "team.title": "The people behind your meetings",
+  "team.sub": "A small, dedicated team that personally runs every campaign, from strategy to booked meeting.",
+  "team.r1": "Sales Specialist",
+  "team.r2": "Email Marketing & Deliverability Specialist",
+  "team.r3": "GTM Strategist",
 
   "q.title": "An engagement built around your market",
   "q.text": "Scope, channels and pricing depend on your goals. Send us a short enquiry and we'll put together a proposal for your company.",
