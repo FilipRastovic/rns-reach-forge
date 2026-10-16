@@ -10,7 +10,9 @@ const EN = {
   "nav.team": "Team",
   "nav.cta": "Book a call",
 
-  "hero.eyebrow": "B2B lead generation · Sales development · Email marketing",
+  "hero.e1": "B2B lead generation",
+  "hero.e2": "Sales development",
+  "hero.e3": "Email marketing",
   "hero.title": "We fill your calendar with meetings with <em>the right buyers.</em>",
   "hero.lead": "We find the companies that need your service or product, start conversations with their decision-makers and hand your sales team qualified meetings. You focus on closing the deal.",
   "hero.cta1": "Book a free consultation",
