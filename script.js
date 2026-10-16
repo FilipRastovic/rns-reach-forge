@@ -26,6 +26,22 @@ const EN = {
   "mock.subj": "Re: A reliable packaging supplier for your line",
   "mock.body": "Hi, this sounds like exactly what we're looking for right now. Could we talk on Thursday at 10am?",
   "mock.tag": "Meeting booked · Thu 10:00",
+  "viz.list": "Target companies",
+  "viz.l1": "Head of Procurement",
+  "viz.l1b": "Manufacturing",
+  "viz.l2": "Operations Director",
+  "viz.l2b": "Logistics",
+  "viz.l3": "Managing Director",
+  "viz.l3b": "IT services",
+  "viz.l4": "Owner",
+  "viz.l4b": "Wholesale",
+  "viz.cal": "Your calendar",
+  "viz.week": "this week",
+  "viz.d1": "Mon",
+  "viz.d2": "Tue",
+  "viz.d3": "Wed",
+  "viz.d4": "Thu",
+  "viz.d5": "Fri",
 
   "strip.lead": "Sound familiar?",
   "strip.p1": "New clients only come through referrals, and you can't tell what next quarter will look like.",
@@ -289,3 +305,18 @@ form.addEventListener("submit", async e => {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Hero animation: verify prospects -> reply arrives -> meeting lands in the calendar, on a loop.
+const viz = document.getElementById("viz");
+if (viz && matchMedia("(min-width: 961px)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const steps = [...viz.querySelectorAll("[data-at]")];
+  let timers = [];
+  const play = () => {
+    timers.forEach(clearTimeout);
+    steps.forEach(el => el.classList.remove("on"));
+    timers = steps.map(el => setTimeout(() => el.classList.add("on"), +el.dataset.at));
+    timers.push(setTimeout(play, 9500));
+  };
+  viz.classList.add("animate");
+  play();
+}
