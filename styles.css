@@ -331,3 +331,20 @@ td.us { color: var(--ink); font-weight: 600; }
 }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .contact-form button:disabled { opacity: .6; cursor: wait; }
+
+/* Team */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.member { margin: 0; }
+.member img {
+  display: block; width: 100%; aspect-ratio: 1; object-fit: cover;
+  border-radius: var(--radius); background: var(--tint);
+}
+.member figcaption { padding-top: 18px; border-top: 0; }
+.member h3 { font-size: 21px; }
+.member p { margin-top: 4px; color: var(--ink-2); font-size: 15.5px; }
+.member p::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--lime-strong); margin-right: 8px; vertical-align: 1px;
+}
+@media (max-width: 960px) { .team { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .team { grid-template-columns: 1fr; max-width: 420px; } }
