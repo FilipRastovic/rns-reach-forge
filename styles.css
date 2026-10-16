@@ -402,7 +402,7 @@ td.us { color: var(--ink); font-weight: 600; }
   .viz-link-2 { right: 100%; top: 50%; height: calc(50% + 12px); }
 }
 @media (max-width: 960px) {
-  .viz-list, .viz-cal { display: none; }
+  .hero-visual { display: none; }
 }
 
 /* Animation states (JS adds .animate; without it everything shows in its final state) */
