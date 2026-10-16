@@ -238,7 +238,7 @@ SR["meta.desc"] = metaDesc.content;
 let currentLang = "sr";
 const t = key => (currentLang === "en" ? EN : SR)[key] ?? SR[key] ?? key;
 
-function setLang(lang) {
+function setLang(lang, remember = true) {
   currentLang = lang === "en" ? "en" : "sr";
   document.documentElement.lang = currentLang;
   document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
@@ -246,6 +246,7 @@ function setLang(lang) {
   document.title = t("meta.title");
   metaDesc.content = t("meta.desc");
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === currentLang)));
+  if (!remember) return;
   try { localStorage.setItem("lang", currentLang); } catch (e) {}
   const url = new URL(location.href);
   if (currentLang === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
@@ -257,6 +258,12 @@ document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click
 let initial = new URLSearchParams(location.search).get("lang");
 if (!initial) { try { initial = localStorage.getItem("lang"); } catch (e) {} }
 if (initial === "en") setLang("en");
+else if (!initial) {
+  // First visit: Serbian for browsers set to a BCMS language, English for everyone else.
+  const langs = navigator.languages?.length ? navigator.languages : [navigator.language || ""];
+  const local = langs.some(l => /^(sr|hr|bs|sh|cnr|me)\b/i.test(l));
+  if (!local) setLang("en", false);
+}
 
 // Mobile menu
 const toggle = document.querySelector(".menu-toggle");
