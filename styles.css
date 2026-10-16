@@ -106,12 +106,11 @@ p { margin: 0; }
 .hero-facts span { font-size: 14px; color: var(--muted); }
 
 .hero-visual { position: relative; display: grid; gap: 18px; }
-.mail-card, .funnel-card {
+.mail-card {
   background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 22px; box-shadow: 0 1px 0 rgba(21,23,27,.04), 0 12px 32px -18px rgba(21,23,27,.25);
 }
-.mail-card { transform: rotate(-1.2deg); margin-right: 28px; }
-.funnel-card { margin-left: 28px; }
+.mail-card { transform: rotate(-1.2deg); }
 .mail-top { display: flex; gap: 12px; align-items: flex-start; }
 .avatar {
   flex: none; width: 38px; height: 38px; border-radius: 50%;
@@ -127,17 +126,6 @@ p { margin: 0; }
   background: #E5F2EA; color: var(--green); font-weight: 600; font-size: 13.5px;
   padding: 6px 12px; border-radius: 999px;
 }
-.funnel-title { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
-.funnel-row {
-  display: grid; grid-template-columns: 130px 1fr 40px; gap: 12px; align-items: center;
-  font-size: 14px; color: var(--ink-2); padding: 6px 0;
-}
-.funnel-row b { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
-.bar { height: 8px; background: var(--tint); border-radius: 999px; overflow: hidden; }
-.bar i { display: block; height: 100%; background: var(--ink); border-radius: 999px; }
-.funnel-row.accent .bar i { background: var(--accent); }
-.funnel-row.accent b { color: var(--accent); }
-.funnel-note { margin-top: 10px; font: 500 11px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 
 /* Strip */
 .strip { background: var(--ink); color: #fff; padding: 40px 0; }
@@ -354,9 +342,7 @@ td.us { color: var(--ink); font-weight: 600; }
   .benefits, .industries { grid-template-columns: 1fr; }
   .industry.big { grid-column: auto; }
   .steps { grid-template-columns: 1fr; }
-  .mail-card { margin-right: 0; transform: none; }
-  .funnel-card { margin-left: 0; }
-  .funnel-row { grid-template-columns: 110px 1fr 32px; font-size: 13px; }
+  .mail-card { transform: none; }
   .field-row { grid-template-columns: 1fr; }
   .contact-form { padding: 22px; }
   .footer-grid { grid-template-columns: 1fr; }
