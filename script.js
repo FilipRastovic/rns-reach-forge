@@ -207,9 +207,10 @@ const CONTACT_EMAIL = "rastko@rnsreachforge.com";
 const SR = { ...SR_EXTRA };
 document.querySelectorAll("[data-i18n]").forEach(el => { SR[el.dataset.i18n] = el.textContent; });
 document.querySelectorAll("[data-i18n-html]").forEach(el => { SR[el.dataset.i18nHtml] = el.innerHTML; });
-SR["meta.title"] = document.title;
+// The HTML <head> ships in English (for link previews), so the Serbian meta lives here.
+SR["meta.title"] = "RNS Reach Forge — B2B generisanje leadova i email marketing";
 const metaDesc = document.querySelector('meta[name="description"]');
-SR["meta.desc"] = metaDesc.content;
+SR["meta.desc"] = "RNS Reach Forge je B2B agencija za generisanje leadova, razvoj prodaje i email marketing. Zakazujemo kvalifikovane sastanke sa donosiocima odluka za uslužne i proizvodne firme.";
 
 let currentLang = "sr";
 const t = key => (currentLang === "en" ? EN : SR)[key] ?? SR[key] ?? key;
@@ -234,7 +235,7 @@ document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click
 let initial = new URLSearchParams(location.search).get("lang");
 if (!initial) { try { initial = localStorage.getItem("lang"); } catch (e) {} }
 // English is the default; Serbian only when chosen with the switch or linked with ?lang=sr.
-if (initial !== "sr") setLang("en", false);
+setLang(initial === "sr" ? "sr" : "en", false);
 
 // Mobile menu
 const toggle = document.querySelector(".menu-toggle");
